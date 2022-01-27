@@ -18,10 +18,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var ToolBar: UIToolbar!
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth: -4.5
+        .strokeColor: UIColor.black,
+        .foregroundColor: UIColor.white,
+        .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        .strokeWidth: -4.5
     ]
     let memeDelegate = MemeTFDelegate()
     
@@ -31,26 +31,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if imagePickerView.image == nil {
             ShareButton.isEnabled = false
         }
-        BottomTF.defaultTextAttributes = memeTextAttributes
-        TopTF.defaultTextAttributes = memeTextAttributes
-        TopTF.delegate = memeDelegate
-        BottomTF.delegate = memeDelegate
-        TopTF.text = "Top"
-        BottomTF.text = "Bottom"
-        BottomTF.textAlignment = NSTextAlignment.center
-        TopTF.textAlignment = NSTextAlignment.center
-        
+        setMemeTextField(BottomTF, text: "Bottom")
+        setMemeTextField(TopTF, text: "Top")
         
         // Do any additional setup after loading the view.
     }
+    
+    func setMemeTextField(_ textField: UITextField, text: String){
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.delegate = memeDelegate
+        textField.text = text
+        textField.textAlignment = NSTextAlignment.center
+    }
+    
     @objc func nextTapped() {
         print("NEXT Tapped")
     }
 
     @IBAction func pickAnImage(_ sender: Any) {
+        presentPickerViewController(source: .photoLibrary)
+    }
+    
+    func presentPickerViewController(source: UIImagePickerController.SourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -67,10 +72,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func takeAnImage(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        presentPickerViewController(source: .camera)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +100,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
-        view.frame.origin.y = -getKeyboardHeight(notification)
+        if BottomTF.isFirstResponder {
+            view.frame.origin.y = -getKeyboardHeight(notification)
+        }
+        
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
@@ -114,13 +119,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func save() {
         let memedImage = generateMemedImage()
-//
         let saveImage = UIActivityViewController(activityItems:[memedImage], applicationActivities: nil)
+        saveImage.completionWithItemsHandler = {
+            (activity, completed, items, error) in
+            if completed {
+                self.save()
+            }
+        }
         present(saveImage, animated: true, completion: nil)
     }
     func generateMemedImage() -> UIImage {
-        ToolBar.isHidden = true
-        NavBar.isHidden = true
+        hideAndShowBars(answer: true)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -128,10 +137,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         
-        ToolBar.isHidden = false
-        NavBar.isHidden = false
+        hideAndShowBars(answer: false)
         
         return memedImage
+    }
+    
+    func hideAndShowBars(answer: Bool){
+        ToolBar.isHidden = answer
+        NavBar.isHidden = answer
     }
     
     func saveMeme(memed: UIImage){
@@ -140,35 +153,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 }
 
-class Meme: NSObject {
-    var top: String
-    var bottom: String
-    var originalImage: UIImage
-    
-    var memedImage: UIImage
-    
-    init(topText: String, bottomText: String, originalImage: UIImage, memedImage: UIImage){
-        self.top = topText
-        self.bottom = bottomText
-        self.originalImage = originalImage
-        self.memedImage = memedImage
-    }
-}
-
-class MemeManager: NSObject {
-    static let sharedInstance: MemeManager = { MemeManager() }()
-    
-    var memes: [Meme]
-    
-    override init () {
-        memes = []
-    }
-    
-    func deleteMemeAtIndex(index: Int){
-        memes.remove(at: index)
-    }
-    
-    func appendMeme(meme: Meme){
-        memes.append(meme)
-    }
-}
