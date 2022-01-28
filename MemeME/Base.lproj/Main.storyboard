@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MFQ-4j-vVD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -8,10 +8,71 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="VSG-Qn-qUR">
+            <objects>
+                <navigationController id="MFQ-4j-vVD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uWL-b5-mdN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1k0-EN-VFE" kind="relationship" relationship="rootViewController" id="jDc-ko-Z0b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S29-gF-AIt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-929" y="-261"/>
+        </scene>
+        <!--Sent Meme Table View Controller-->
+        <scene sceneID="7ix-ds-nzk">
+            <objects>
+                <tableViewController id="1k0-EN-VFE" customClass="SentMemeTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="gqb-Pc-k5A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" textLabel="MSa-Qb-xlp" detailTextLabel="XQH-BG-v8N" style="IBUITableViewCellStyleValue1" id="azo-lo-tNQ">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="azo-lo-tNQ" id="wDa-vk-Knc">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MSa-Qb-xlp">
+                                            <rect key="frame" x="20" y="15" width="25" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XQH-BG-v8N">
+                                            <rect key="frame" x="361" y="15" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1k0-EN-VFE" id="zXJ-cq-MQv"/>
+                            <outlet property="delegate" destination="1k0-EN-VFE" id="oU2-hm-fj6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="HEL-Xb-MaQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A9n-73-g5d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-170" y="-261"/>
+        </scene>
+        <!--New Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeME" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewMemeViewController" id="BYZ-38-t0r" customClass="NewMemeViewController" customModule="MemeME" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,12 +94,12 @@
                                 <rect key="frame" x="0.0" y="93" width="414" height="720"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NNO-Cf-4sN" userLabel="Top Text Field">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="top text field" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NNO-Cf-4sN" userLabel="Top Text Field">
                                 <rect key="frame" x="0.0" y="93" width="414" height="16"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="804-o6-aiH" userLabel="Bottom Text Field">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="bottom text field" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="804-o6-aiH" userLabel="Bottom Text Field">
                                 <rect key="frame" x="0.0" y="794.5" width="414" height="18.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -88,7 +149,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="BottomTF" destination="804-o6-aiH" id="04a-qs-JRv"/>
+                        <outlet property="BottomTF" destination="804-o6-aiH" id="G5N-r6-lDu"/>
                         <outlet property="NavBar" destination="8Mr-A7-eO7" id="1Kv-zk-qJQ"/>
                         <outlet property="ShareButton" destination="ogE-CZ-sMo" id="xGP-kQ-YX1"/>
                         <outlet property="ToolBar" destination="WgQ-ll-rn1" id="Cmy-kS-Quo"/>
@@ -99,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="83.705357142857139"/>
+            <point key="canvasLocation" x="623" y="-525"/>
         </scene>
     </scenes>
     <resources>
