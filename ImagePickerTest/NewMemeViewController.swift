@@ -100,9 +100,9 @@ class NewMemeViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
 
     @objc func keyboardWillShow(_ notification:Notification) {
-//        if BottomTF.isFirstResponder {
+        if BottomTF.isFirstResponder {
             view.frame.origin.y = -getKeyboardHeight(notification)
-//        }
+        }
 
     }
 
