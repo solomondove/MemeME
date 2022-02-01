@@ -9,6 +9,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="K8s-CC-MHa">
+            <objects>
+                <viewController storyboardIdentifier="MemeDetailViewController" id="Wq0-Y1-p8U" customClass="MemeDetailViewController" customModule="MemeME" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GpE-xE-Qav">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Wh-6J-XpS">
+                                <rect key="frame" x="87" y="411" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HT7-MJ-MyD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7Wh-6J-XpS" firstAttribute="centerX" secondItem="HT7-MJ-MyD" secondAttribute="centerX" id="2ly-RJ-hlm"/>
+                            <constraint firstItem="7Wh-6J-XpS" firstAttribute="centerY" secondItem="HT7-MJ-MyD" secondAttribute="centerY" id="IvV-JI-IDK"/>
+                            <constraint firstItem="7Wh-6J-XpS" firstAttribute="width" secondItem="GpE-xE-Qav" secondAttribute="height" multiplier="15:56" id="op3-0L-Pql"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="memeImage" destination="7Wh-6J-XpS" id="sLo-0M-jPU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sBx-F5-N1Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1371" y="-226"/>
+        </scene>
         <!--New Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -154,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="-1399" y="1207"/>
         </scene>
-        <!--Sent Meme Collection View Controller-->
+        <!--Meme Collection View Controller-->
         <scene sceneID="KUu-Pa-a0f">
             <objects>
-                <collectionViewController id="59z-P7-Cna" customClass="SentMemeCollectionViewController" customModule="MemeME" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="59z-P7-Cna" customClass="MemeCollectionViewController" customModule="MemeME" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WLc-5V-kQv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="-591" y="1207"/>
         </scene>
-        <!--Sent Meme Table View Controller-->
+        <!--Meme Table View Controller-->
         <scene sceneID="K8q-Ns-Rxs">
             <objects>
-                <tableViewController id="2Cp-LQ-w9f" customClass="SentMemeTableViewController" customModule="MemeME" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="2Cp-LQ-w9f" customClass="MemeTableViewController" customModule="MemeME" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fBk-li-GTk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

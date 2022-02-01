@@ -33,8 +33,6 @@ class NewMemeViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         setMemeTextField(BottomTF, text: "Bottom")
         setMemeTextField(TopTF, text: "Top")
-
-        // Do any additional setup after loading the view.
     }
 
     func setMemeTextField(_ textField: UITextField, text: String){
@@ -79,11 +77,13 @@ class NewMemeViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     func subscribeToKeyboardNotifications() {

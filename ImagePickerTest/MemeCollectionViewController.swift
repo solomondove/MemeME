@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SentMemeCollectionViewController: UICollectionViewController {
+class MemeCollectionViewController: UICollectionViewController {
     
     @IBOutlet var flowLayout: UICollectionViewFlowLayout!
     
@@ -17,7 +17,8 @@ class SentMemeCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send Meme", style: .plain, target: self, action: #selector(sendNew))
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(sendNew))
+    
         
         let space: CGFloat = 3.0
         let dimension = (view.frame.size.width - (2 * space)) / 3.0
@@ -47,4 +48,9 @@ class SentMemeCollectionViewController: UICollectionViewController {
         return cell 
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        detailController.meme = appDelegate.memes[(indexPath as NSIndexPath).row]
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
 }

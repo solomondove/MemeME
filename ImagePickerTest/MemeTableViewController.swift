@@ -1,12 +1,13 @@
 import Foundation
 import UIKit
 
-class SentMemeTableViewController: UITableViewController {
+class MemeTableViewController: UITableViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send Meme", style: .plain, target: self, action: #selector(sendNew))
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(sendNew))
+
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -32,5 +33,11 @@ class SentMemeTableViewController: UITableViewController {
         cell.detailTextLabel?.text = meme.bottom
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        detailController.meme = appDelegate.memes[(indexPath as NSIndexPath).row]
+        self.navigationController!.pushViewController(detailController, animated: true)
     }
 }
